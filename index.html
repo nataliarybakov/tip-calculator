@@ -19,7 +19,7 @@
             <div>
                 <div class="space-between">
                 <label for="tipInput">Select tip</label>
-                <span id="tipPercent">0%</span>
+                <span id="tipPercent"></span>
                 </div>
             <input type ="range" value="0" id="tipInput" class="range" />
             </div>
@@ -53,15 +53,28 @@
         </section>
     </main>
     <script>
+
     function update() {
-var bill = document.getElementById("yourBill").value;
+var bill = Number(document.getElementById("yourBill").value);
 var tipPercent = document.getElementById("tipInput").value;
 var split = document.getElementById("splitInput").value;
-console.log({bil, tipPercent, split })
+
+var tipValue = bill * (tipPercent / 100);
+var tipEach = tipValue / split;
+var newBillEach = (bill + tipValue) / split;
+
+document.getElementById("tipPercent").innerHTML = tipPercent + "%";
+document.getElementById("tipValue").innerHTML = tipValue;
+document.getElementById("totalWithTip").innerHTML = bill + tipValue;
+document.getElementById("splitValue").innerHTML = split;
+document.getElementById("billEach").innerHTML = newBillEach;
+document.getElementById("tipEach").innerHTML = tipEach;
         }
 
 var container = document.getElementById("container");
 container.addEventListener("input", update);
+
+
     </script>
 </body>
 </html>
